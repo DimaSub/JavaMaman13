@@ -23,10 +23,10 @@ public class Square3x3 {
     }
 
     /**
-     * Constructs a 2-dimensional array of the size 3X3, whose values are taken from the given
+     * Constructs a 2-dimensional array of the size 3X3, which values are taken from the given
      * array. If the given array’s size is bigger than 3X3, only the first 3X3 cells are taken. If the
      * given array is smaller, the rest of the cells are initialized to –1.
-     * @param array The array from which values gets copied.
+     * @param array the array from which values gets copied.
      */
     public Square3x3(int[][] array){
         for (int row=0; row<NUMBER_OF_ROWS; row++){
