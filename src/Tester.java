@@ -71,14 +71,14 @@ public class Tester {
         System.out.println("Using Sudoku second constructor...");
         Sudoku sod2 = sod2 = new Sudoku(square3x3Array);
 
-//        System.out.print("Checking method isValid with invalid Sudoku (should print false): ");
-//        System.out.println(sod2.isValid());
-//
-//        System.out.print("Checking method isValid with valid Sudoku (should print true): ");
-//        square3x3Array[0][0].setXY(0, 1, 6);
-//        square3x3Array[0][0].setXY(2, 1, 9);
-//        sod2 = new Sudoku(square3x3Array);
-//        System.out.println(sod2.isValid());
+        System.out.print("Checking method isValid with invalid Sudoku (should print false): ");
+        System.out.println(sod2.isValid());
+
+        System.out.print("Checking method isValid with valid Sudoku (should print true): ");
+        square3x3Array[0][0].setXY(0, 1, 6);
+        square3x3Array[0][0].setXY(2, 1, 9);
+        sod2 = new Sudoku(square3x3Array);
+        System.out.println(sod2.isValid());
     }
 
     private static void printArray(boolean[] array) {

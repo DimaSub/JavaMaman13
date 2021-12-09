@@ -6,8 +6,10 @@
 public class Sudoku {
 
     private Square3x3[][] _sudoku = new Square3x3[3][3];
-    private final int NUMBER_OF_ROWS = 9;
-    private final int NUMBER_OF_COLUMNS = 9;
+    private final int NUMBER_OF_ROWS = 3;
+    private final int NUMBER_OF_COLUMNS = 3;
+    private final int NUMBER_OF_SUBROWS = 3;
+    private final int NUMBER_OF_SUBCOLUMNS = 3;
 
     /**
      * Constructor for objects of class Sudoku. Constructs and initializes a 2-dimensional
@@ -39,13 +41,42 @@ public class Sudoku {
      * @return
      */
     public boolean isValid(){
-        boolean sudokuValidantionArray[][]= new boolean[3][10];
-        boolean tempValidationArray[] = new boolean[10];
+        boolean rowValidationArray[] = new boolean[10];
+        boolean colValidationArray[] = new boolean[10];
+        boolean allValidationArray[] = new boolean[10];
 
         for (int row = 0; row < NUMBER_OF_ROWS; row++){
             for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
-                _sudoku[row][col].whosThereRow(row, tempValidationArray);
+                for (int subRow = 0; subRow < NUMBER_OF_SUBROWS; subRow++) {
+                    _sudoku[row][col].whosThereRow(subRow, rowValidationArray);
+                }
+                for (int val=1; val<rowValidationArray.length; val++){
+                    if (!rowValidationArray[val]) return false;
+                }
             }
         }
+
+        for (int row = 0; row < NUMBER_OF_ROWS; row++){
+            for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
+                for (int subCol = 0; subCol < NUMBER_OF_SUBCOLUMNS; subCol++) {
+                    _sudoku[row][col].whosThereCol(subCol, colValidationArray);
+                }
+                for (int val=1; val<colValidationArray.length; val++){
+                    if (!colValidationArray[val]) return false;
+                }
+            }
+        }
+
+        int counter = 1;
+        for (int row = 0; row < NUMBER_OF_ROWS; row++){
+            for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
+                allValidationArray[counter]=_sudoku[row][col].allThere();
+                counter++;
+            }
+            for (int val=1; val<allValidationArray.length; val++){
+                if (!allValidationArray[val]) return false;
+            }
+        }
+        return true;
     }
 }
