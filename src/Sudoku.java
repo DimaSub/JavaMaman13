@@ -6,8 +6,8 @@
 public class Sudoku {
 
     private Square3x3[][] _sudoku = new Square3x3[3][3];
-    private final int NUMBER_OF_ROWS = 3;
-    private final int NUMBER_OF_COLUMNS = 3;
+    private final int NUMBER_OF_ROWS = 9;
+    private final int NUMBER_OF_COLUMNS = 9;
 
     /**
      * Constructor for objects of class Sudoku. Constructs and initializes a 2-dimensional
@@ -39,6 +39,13 @@ public class Sudoku {
      * @return
      */
     public boolean isValid(){
-        return true;
+        boolean sudokuValidantionArray[][]= new boolean[3][10];
+        boolean tempValidationArray[] = new boolean[10];
+
+        for (int row = 0; row < NUMBER_OF_ROWS; row++){
+            for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
+                _sudoku[row][col].whosThereRow(row, tempValidationArray);
+            }
+        }
     }
 }
