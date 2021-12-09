@@ -29,11 +29,7 @@ public class Square3x3 {
      * @param array the array from which values gets copied.
      */
     public Square3x3(int[][] array){
-        for (int row=0; row<NUMBER_OF_ROWS; row++){
-            for (int col=0; col<NUMBER_OF_COLUMNS; col++){
-                _square3x3[row][col] = DEFAULT_CELL_VALUE;
-            }
-        }
+        this();
 
         for (int row=0; row<array.length || row<NUMBER_OF_ROWS; row++){
             for (int col=0; col<array[row].length || col<NUMBER_OF_COLUMNS; col++){
