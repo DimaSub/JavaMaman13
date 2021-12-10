@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Tester {
     public static void main(String[] args){
         System.out.println("Using Square3x3 default constructor...");
@@ -79,6 +81,16 @@ public class Tester {
         square3x3Array[0][0].setXY(2, 1, 9);
         sod2 = new Sudoku(square3x3Array);
         System.out.println(sod2.isValid());
+        System.out.println(square3x3Array[0][0].allThere());
+        System.out.println(square3x3Array[0][1].allThere());
+        System.out.println(square3x3Array[0][2].allThere());
+        System.out.println(square3x3Array[1][0].allThere());
+        System.out.println(square3x3Array[1][1].allThere());
+        System.out.println(square3x3Array[1][2].allThere());
+        System.out.println(square3x3Array[2][0].allThere());
+        System.out.println(square3x3Array[2][1].allThere());
+        System.out.println(square3x3Array[2][2].allThere());
+
     }
 
     private static void printArray(boolean[] array) {

@@ -5,7 +5,7 @@
  */
 public class Sudoku {
 
-    private Square3x3[][] _sudoku = new Square3x3[3][3];
+    private Square3x3[][] _board = new Square3x3[3][3];
     private final int NUMBER_OF_ROWS = 3;
     private final int NUMBER_OF_COLUMNS = 3;
     private final int NUMBER_OF_SUBROWS = 3;
@@ -18,7 +18,7 @@ public class Sudoku {
     public Sudoku(){
         for (int row = 0; row < NUMBER_OF_ROWS; row++){
             for (int col = 0; col < NUMBER_OF_COLUMNS; col++){
-                _sudoku[row][col] = new Square3x3();
+                _board[row][col] = new Square3x3();
             }
         }
     }
@@ -31,14 +31,14 @@ public class Sudoku {
     public Sudoku(Square3x3[][] square3x3Array){
         for (int row = 0; row < NUMBER_OF_ROWS; row++){
             for (int col = 0; col < NUMBER_OF_COLUMNS; col++){
-                _sudoku[row][col] = new Square3x3(square3x3Array[row][col]);
+                _board[row][col] = new Square3x3(square3x3Array[row][col]);
             }
         }
     }
 
     /**
-     *
-     * @return
+     * Checks whether the Sudoku board is entirely correct based on the Sudoku rules.
+     * @return a boolean value, true if Sudoku is correct or false otherwise
      */
     public boolean isValid(){
         boolean rowValidationArray[] = new boolean[10];
@@ -46,36 +46,38 @@ public class Sudoku {
         boolean allValidationArray[] = new boolean[10];
 
         for (int row = 0; row < NUMBER_OF_ROWS; row++){
-            for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
-                for (int subRow = 0; subRow < NUMBER_OF_SUBROWS; subRow++) {
-                    _sudoku[row][col].whosThereRow(subRow, rowValidationArray);
+            for (int subRow = 0; subRow < NUMBER_OF_SUBROWS; subRow++) {
+                for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
+                    _board[row][col].whosThereRow(subRow, rowValidationArray);
                 }
-                for (int val=1; val<rowValidationArray.length; val++){
-                    if (!rowValidationArray[val]) return false;
-                }
+                if (!arrayValidator(rowValidationArray)) return false;
             }
         }
 
-        for (int row = 0; row < NUMBER_OF_ROWS; row++){
-            for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
-                for (int subCol = 0; subCol < NUMBER_OF_SUBCOLUMNS; subCol++) {
-                    _sudoku[row][col].whosThereCol(subCol, colValidationArray);
+
+        for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
+            for (int subCol = 0; subCol < NUMBER_OF_SUBCOLUMNS; subCol++) {
+                for (int row = 0; row < NUMBER_OF_ROWS; row++){
+                    _board[row][col].whosThereCol(subCol, colValidationArray);
                 }
-                for (int val=1; val<colValidationArray.length; val++){
-                    if (!colValidationArray[val]) return false;
-                }
+                if (!arrayValidator(colValidationArray)) return false;
             }
         }
 
-        int counter = 1;
-        for (int row = 0; row < NUMBER_OF_ROWS; row++){
+        for (int row = 0, counter = 1; row < NUMBER_OF_ROWS; row++){
             for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
-                allValidationArray[counter]=_sudoku[row][col].allThere();
+                allValidationArray[counter]=_board[row][col].allThere();
                 counter++;
             }
-            for (int val=1; val<allValidationArray.length; val++){
-                if (!allValidationArray[val]) return false;
-            }
+        }
+
+        if (!arrayValidator(allValidationArray)) return false;
+        else return true;
+    }
+
+    private boolean arrayValidator(boolean[] array){
+        for (int val=1; val<array.length; val++){
+            if (!array[val]) return false;
         }
         return true;
     }

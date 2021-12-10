@@ -5,7 +5,7 @@
  */
 public class Square3x3 {
 
-    private int[][] _square3x3 = new int[3][3];
+    private int[][] _boardCell = new int[3][3];
     private final int DEFAULT_CELL_VALUE = -1;
     private final int NUMBER_OF_ROWS = 3;
     private final int NUMBER_OF_COLUMNS = 3;
@@ -17,7 +17,7 @@ public class Square3x3 {
     public Square3x3(){
         for (int row=0; row<NUMBER_OF_ROWS; row++){
             for (int col=0; col<NUMBER_OF_COLUMNS; col++){
-                _square3x3[row][col] = DEFAULT_CELL_VALUE;
+                _boardCell[row][col] = DEFAULT_CELL_VALUE;
             }
         }
     }
@@ -33,7 +33,7 @@ public class Square3x3 {
 
         for (int row=0; row<array.length || row<NUMBER_OF_ROWS; row++){
             for (int col=0; col<array[row].length || col<NUMBER_OF_COLUMNS; col++){
-                _square3x3[row][col] = array[row][col];
+                _boardCell[row][col] = array[row][col];
             }
         }
     }
@@ -46,7 +46,7 @@ public class Square3x3 {
     public Square3x3(Square3x3 other){
         for (int row=0; row<NUMBER_OF_ROWS; row++){
             for (int col=0; col<NUMBER_OF_COLUMNS; col++){
-                _square3x3[row][col] = other._square3x3[row][col];
+                _boardCell[row][col] = other._boardCell[row][col];
             }
         }
     }
@@ -59,7 +59,7 @@ public class Square3x3 {
      * @return The value in the (row, col) cell.
      */
     public int getCell(int row, int col){
-        if (row>=0 && row<NUMBER_OF_ROWS && col>=0 && col<NUMBER_OF_COLUMNS) return _square3x3[row][col];
+        if (row>=0 && row<NUMBER_OF_ROWS && col>=0 && col<NUMBER_OF_COLUMNS) return _boardCell[row][col];
         else return -1;
     }
 
@@ -71,7 +71,7 @@ public class Square3x3 {
      * @param value the value to set in the (row, col) cell.
      */
     public void setXY(int row, int col, int value){
-        if (row>=0 && row<NUMBER_OF_ROWS && col>=0 && col<NUMBER_OF_COLUMNS) _square3x3[row][col]=value;
+        if (row>=0 && row<NUMBER_OF_ROWS && col>=0 && col<NUMBER_OF_COLUMNS) _boardCell[row][col]=value;
     }
 
     /**
@@ -82,8 +82,8 @@ public class Square3x3 {
         String str = new String();
         for (int row=0; row<NUMBER_OF_ROWS; row++){
             for (int col=0; col<NUMBER_OF_COLUMNS; col++){
-                if (col!=2) str+=_square3x3[row][col]+"\t";
-                else str+=_square3x3[row][col]+"\n";
+                if (col!=2) str+=_boardCell[row][col]+"\t";
+                else str+=_boardCell[row][col]+"\n";
             }
         }
         return str;
@@ -118,7 +118,7 @@ public class Square3x3 {
         if (row>=0 && row<NUMBER_OF_ROWS && values.length==10){
             for (int val = 1; val < 10; val++){
                 for(int col = 0; col < NUMBER_OF_COLUMNS ; col++){
-                    if (_square3x3[row][col]==val) values[val]=true;
+                    if (_boardCell[row][col]==val) values[val]=true;
                 }
             }
         }
@@ -136,7 +136,7 @@ public class Square3x3 {
         if (col>=0 && col<NUMBER_OF_COLUMNS && values.length==10){
             for (int val = 1; val < 10; val++){
                 for(int row = 0; row < NUMBER_OF_ROWS ; row++){
-                    if (_square3x3[row][col]==val) values[val]=true;
+                    if (_boardCell[row][col]==val) values[val]=true;
                 }
             }
         }
