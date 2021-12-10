@@ -41,12 +41,12 @@ public class Sudoku {
      * @return a boolean value, true if Sudoku is correct or false otherwise
      */
     public boolean isValid(){
-        boolean rowValidationArray[] = new boolean[10];
-        boolean colValidationArray[] = new boolean[10];
+
         boolean allValidationArray[] = new boolean[10];
 
         for (int row = 0; row < NUMBER_OF_ROWS; row++){
             for (int subRow = 0; subRow < NUMBER_OF_SUBROWS; subRow++) {
+                boolean rowValidationArray[] = new boolean[10];
                 for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
                     _board[row][col].whosThereRow(subRow, rowValidationArray);
                 }
@@ -57,6 +57,7 @@ public class Sudoku {
 
         for (int col = 0; col < NUMBER_OF_COLUMNS; col++) {
             for (int subCol = 0; subCol < NUMBER_OF_SUBCOLUMNS; subCol++) {
+                boolean colValidationArray[] = new boolean[10];
                 for (int row = 0; row < NUMBER_OF_ROWS; row++){
                     _board[row][col].whosThereCol(subCol, colValidationArray);
                 }

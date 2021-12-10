@@ -31,8 +31,8 @@ public class Square3x3 {
     public Square3x3(int[][] array){
         this();
 
-        for (int row=0; row<array.length || row<NUMBER_OF_ROWS; row++){
-            for (int col=0; col<array[row].length || col<NUMBER_OF_COLUMNS; col++){
+        for (int row=0; row<array.length && row<NUMBER_OF_ROWS; row++){
+            for (int col=0; col<array[row].length && col<NUMBER_OF_COLUMNS; col++){
                 _boardCell[row][col] = array[row][col];
             }
         }
@@ -142,3 +142,6 @@ public class Square3x3 {
         }
     }
 }
+
+
+
