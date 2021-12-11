@@ -46,7 +46,7 @@ public class Square3x3 {
     public Square3x3(Square3x3 other){
         for (int row=0; row<NUMBER_OF_ROWS; row++){
             for (int col=0; col<NUMBER_OF_COLUMNS; col++){
-                _boardCell[row][col] = other._boardCell[row][col];
+                _boardCell[row][col] = other.getCell(row,col);
             }
         }
     }
@@ -56,7 +56,7 @@ public class Square3x3 {
      * array bounds, returns –1. Legal values for row/col are 0,1,2.
      * @param row the row coordinate.
      * @param col the column coordinate.
-     * @return The value in the (row, col) cell.
+     * @return the value in the (row, col) cell.
      */
     public int getCell(int row, int col){
         if (row>=0 && row<NUMBER_OF_ROWS && col>=0 && col<NUMBER_OF_COLUMNS) return _boardCell[row][col];
@@ -90,7 +90,7 @@ public class Square3x3 {
     }
 
     /**
-     * Checks whether the array in Square3x3 contains all numbers from 1 to 9.
+     * Checks whether Square3x3 contains all numbers from 1 to 9.
      * Returns true if it does and false it doesn't.
      * @return a boolean value based on the check result.
      */

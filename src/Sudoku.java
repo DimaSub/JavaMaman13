@@ -71,11 +71,11 @@ public class Sudoku {
                 counter++;
             }
         }
-
         if (!arrayValidator(allValidationArray)) return false;
         else return true;
     }
 
+    //A private method to check if array contains "false" value in cells 1 to 10.
     private boolean arrayValidator(boolean[] array){
         for (int val=1; val<array.length; val++){
             if (!array[val]) return false;
